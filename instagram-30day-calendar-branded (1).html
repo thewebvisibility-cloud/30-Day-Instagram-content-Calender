@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>30-Day Instagram Content Calendar</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FDF6ED;
+  --warm-white: #FEFCF8;
+  --ink: #1A1208;
+  --gold: #C9973A;
+  --gold-light: #F0D4A0;
+  --blush: #E8C4B0;
+  --sage: #8FA68E;
+  --dusty-rose: #C4847A;
+  --charcoal: #3D3530;
+  --muted: #8A7E75;
+  --border: #E8DDD0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.masthead {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 60px 40px 50px;
+  position: relative;
+  overflow: hidden;
+}
+.masthead::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 320px; height: 320px;
+  border: 2px solid rgba(201,151,58,0.3);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.masthead::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: 10%;
+  width: 180px; height: 180px;
+  border: 1px solid rgba(201,151,58,0.15);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.masthead-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.masthead-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.masthead h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 900;
+  line-height: 1.05;
+  max-width: 560px;
+}
+.masthead h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+.masthead-meta {
+  text-align: right;
+  flex-shrink: 0;
+}
+.masthead-meta .big-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+}
+.masthead-meta p {
+  font-size: 13px;
+  color: rgba(253,246,237,0.6);
+  margin-top: 4px;
+}
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  background: var(--warm-white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+}
+.filter-bar::-webkit-scrollbar { height: 0; }
+.filter-btn {
+  padding: 16px 22px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.filter-btn:hover { color: var(--ink); }
+.filter-btn.active {
+  color: var(--ink);
+  border-bottom-color: var(--gold);
+  font-weight: 600;
+}
+
+/* ── MAIN GRID ── */
+.calendar-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+/* ── WEEK LABELS ── */
+.week-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 48px 0 24px;
+}
+.week-header:first-child { margin-top: 0; }
+.week-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.week-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── DAY CARDS ── */
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .days-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 560px) {
+  .days-grid { grid-template-columns: repeat(2, 1fr); }
+  .filter-bar { padding: 0 16px; }
+  .calendar-wrap { padding: 32px 16px; }
+  .masthead { padding: 40px 20px; }
+}
+
+.day-card {
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+.day-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--border);
+  transition: background 0.2s;
+}
+.day-card:hover {
+  border-color: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(26,18,8,0.08);
+}
+.day-card:hover::before { background: var(--gold); }
+.day-card.active {
+  border-color: var(--gold);
+  box-shadow: 0 8px 24px rgba(201,151,58,0.18);
+}
+.day-card.active::before { background: var(--gold); }
+
+.day-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+}
+.day-name {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 3px 0 8px;
+}
+.day-theme {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--charcoal);
+  line-height: 1.3;
+}
+.day-type-pill {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 3px 8px;
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Pill colors by category */
+.pill-motivational  { background: #FFF0D9; color: #B5740A; }
+.pill-educational   { background: #E8F4EC; color: #3A7A4A; }
+.pill-personal      { background: #F4E8EC; color: #8A3A4A; }
+.pill-entertaining  { background: #E8ECF4; color: #3A4A8A; }
+.pill-promotional   { background: #F0E8F4; color: #6A3A8A; }
+.pill-community     { background: #F4F0E8; color: #7A6030; }
+
+/* ── MODAL OVERLAY ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26,18,8,0.6);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  backdrop-filter: blur(4px);
+}
+.overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ── MODAL CARD ── */
+.modal {
+  background: var(--warm-white);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 660px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.25s ease;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.overlay.open .modal {
+  transform: translateY(0) scale(1);
+}
+.modal::-webkit-scrollbar { width: 6px; }
+.modal::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+.modal-header {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 28px 32px;
+  border-radius: 20px 20px 0 0;
+  position: relative;
+}
+.modal-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+.modal-day-badge {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.modal-close {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: var(--cream);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.modal-close:hover { background: rgba(255,255,255,0.2); }
+
+.modal-meta {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.modal-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(253,246,237,0.7);
+}
+.modal-meta-item span:first-child { font-size: 14px; }
+
+/* ── MODAL BODY ── */
+.modal-body {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+/* SLIDES PREVIEW */
+.slides-strip {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.slides-strip::-webkit-scrollbar { height: 0; }
+.slide-chip {
+  flex-shrink: 0;
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.3;
+  position: relative;
+}
+.slide-chip .chip-num {
+  position: absolute;
+  top: 5px; left: 7px;
+  font-size: 9px;
+  opacity: 0.7;
+}
+
+/* CAPTION BOX */
+.caption-box {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--charcoal);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* HASHTAG BOX */
+.hashtag-box {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--gold);
+  font-weight: 500;
+  word-break: break-word;
+}
+
+/* COPY BUTTONS */
+.copy-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 20px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.copy-btn-primary {
+  background: var(--ink);
+  color: var(--cream);
+}
+.copy-btn-primary:hover {
+  background: var(--charcoal);
+  transform: translateY(-1px);
+}
+.copy-btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--charcoal);
+}
+.copy-btn-outline:hover {
+  border-color: var(--gold);
+  color: var(--ink);
+}
+.copy-btn.copied {
+  background: var(--sage) !important;
+  color: #fff !important;
+  border-color: var(--sage) !important;
+}
+
+/* NAV ARROWS */
+.modal-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 32px 28px;
+}
+.nav-arrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 1.5px solid var(--border);
+  padding: 10px 18px;
+  border-radius: 100px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--charcoal);
+  transition: all 0.2s;
+}
+.nav-arrow:hover:not(:disabled) {
+  border-color: var(--gold);
+  color: var(--ink);
+}
+.nav-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* PROGRESS BAR */
+.progress-bar-wrap {
+  background: var(--ink);
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.progress-track {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+.progress-label {
+  font-size: 12px;
+  color: rgba(253,246,237,0.5);
+  white-space: nowrap;
+}
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--ink);
+  color: var(--cream);
+  padding: 12px 24px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 999;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ── WATERMARK ── */
+.watermark-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+.watermark-text {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  transform: rotate(-35deg);
+  transform-origin: center center;
+}
+.watermark-item {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(120, 120, 120, 0.18);
+  white-space: nowrap;
+  padding: 120px 80px;
+  letter-spacing: 0.1em;
+  user-select: none;
+  text-transform: uppercase;
+}
+
+/* ── INSTAGRAM LINK ── */
+.ig-link {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 100px;
+  letter-spacing: 0.04em;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10;
+}
+.ig-link:hover { opacity: 0.9; transform: translateY(-1px); }
+.ig-link svg { width: 14px; height: 14px; fill: #fff; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<!-- WATERMARK -->
+<div class="watermark-overlay">
+  <div class="watermark-text" id="watermarkText"></div>
+</div>
+
+<!-- HEADER -->
+<div class="masthead">
+  <a class="ig-link" href="https://www.instagram.com/thewebvisibility" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    @thewebvisibility
+  </a>
+  <div class="masthead-inner">
+    <div>
+      <div class="masthead-label">Instagram Strategy</div>
+      <h1>30 Days of <em>Content</em><br>Ready to Copy & Post</h1>
+    </div>
+    <div class="masthead-meta">
+      <div class="big-num">30</div>
+      <p>days · 30 captions · 30 hashtag sets</p>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar-wrap">
+  <span class="progress-label">Your progress</span>
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+  </div>
+  <span class="progress-label" id="progressLabel">0 / 30 days copied</span>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All 30 Days</button>
+  <button class="filter-btn" data-filter="motivational">✨ Motivational</button>
+  <button class="filter-btn" data-filter="educational">📚 Educational</button>
+  <button class="filter-btn" data-filter="personal">💛 Personal</button>
+  <button class="filter-btn" data-filter="entertaining">😂 Entertaining</button>
+  <button class="filter-btn" data-filter="promotional">🚀 Promotional</button>
+  <button class="filter-btn" data-filter="community">🤝 Community</button>
+</div>
+
+<!-- CALENDAR GRID -->
+<div class="calendar-wrap" id="calendarWrap"></div>
+
+<!-- MODAL OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-header-top">
+        <div>
+          <div class="modal-day-badge" id="mDayBadge"></div>
+          <div class="modal-title" id="mTitle"></div>
+        </div>
+        <button class="modal-close" onclick="closeOverlay()">✕</button>
+      </div>
+      <div class="modal-meta">
+        <div class="modal-meta-item"><span>🕐</span><span id="mTime"></span></div>
+        <div class="modal-meta-item"><span>📱</span><span id="mFormat"></span></div>
+        <div class="modal-meta-item"><span>🎯</span><span id="mGoal"></span></div>
+      </div>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- SLIDES -->
+      <div id="slidesSection">
+        <div class="section-label">Carousel Slides</div>
+        <div class="slides-strip" id="mSlides"></div>
+      </div>
+
+      <!-- CAPTION -->
+      <div>
+        <div class="section-label">Caption — tap to copy</div>
+        <div class="caption-box" id="mCaption"></div>
+      </div>
+
+      <!-- HASHTAGS -->
+      <div>
+        <div class="section-label">Hashtags</div>
+        <div class="hashtag-box" id="mHashtags"></div>
+      </div>
+
+      <!-- COPY BUTTONS -->
+      <div class="copy-row">
+        <button class="copy-btn copy-btn-primary" onclick="copyCaption()">
+          <span>📋</span> Copy Caption
+        </button>
+        <button class="copy-btn copy-btn-outline" onclick="copyHashtags()">
+          <span>#</span> Copy Hashtags
+        </button>
+        <button class="copy-btn copy-btn-outline" onclick="copyAll()">
+          <span>✨</span> Copy Both
+        </button>
+      </div>
+    </div>
+
+    <!-- NAV -->
+    <div class="modal-nav">
+      <button class="nav-arrow" id="navPrev" onclick="navigateDay(-1)">← Previous Day</button>
+      <button class="nav-arrow" id="navNext" onclick="navigateDay(1)">Next Day →</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ Copied to clipboard!</div>
+
+<script>
+// ─── ALL 30 DAYS OF CONTENT ───────────────────────────────────────────────────
+const days = [
+  {
+    day: 1, dayName: "Monday", theme: "New Week Energy",
+    category: "motivational",
+    time: "7:00 AM", format: "Quote Graphic", goal: "Inspire & Get Saves",
+    slides: [
+      { bg: "#1A1208", text: "Start Before\nYou're Ready" },
+      { bg: "#C9973A", text: "Your only\ncompetition\nis yesterday's\nyou" },
+      { bg: "#3D3530", text: "Save this\nfor your\nMonday\nmorning 🌅" }
+    ],
+    caption: `New week. Fresh energy. Endless possibilities. 🌅
+
+"The secret of getting ahead is getting started." — Mark Twain
+
+I used to wait for the perfect moment. The right time. The right circumstances.
+
+Guess what? That moment never came — until I stopped waiting for it.
+
+This Monday, I'm asking you one question:
+What's ONE thing you've been putting off that you could start TODAY?
+
+Not perfectly. Not completely. Just start.
+
+Drop it below. I'll be your accountability partner. 👇`,
+    hashtags: "#MondayMotivation #NewWeek #StartNow #MondayMindset #MotivationalQuotes #GoalSetting #Inspiration #PersonalGrowth #Consistency #DailyMotivation #MindsetShift #SelfImprovement #WeeklyGoals #BelieveInYourself #GrowthMindset"
+  },
+  {
+    day: 2, dayName: "Tuesday", theme: "5 Rules I Live By",
+    category: "educational",
+    time: "10:00 AM", format: "Carousel (6 slides)", goal: "Educate & Get Saves",
+    slides: [
+      { bg: "#8FA68E", text: "5 Rules\nI Live By\n(Swipe →)" },
+      { bg: "#3D3530", text: "1. Reply\nwithin\n24 hours" },
+      { bg: "#C9973A", text: "2. Do the\n2-minute\ntask NOW" },
+      { bg: "#8FA68E", text: "3. One\npriority\nper day" },
+      { bg: "#C4847A", text: "4. Protect\nyour\nmorning\nhour" },
+      { bg: "#1A1208", text: "Which rule\nwill you try\nthis week? 💬" }
+    ],
+    caption: `5 rules that quietly changed my life 🍃
+
+I don't follow a perfect system. I follow simple rules that keep me sane.
+
+𝟭. Reply within 24 hours
+Delayed responses drain mental energy. Clear the queue, clear your mind.
+
+𝟮. Do the 2-minute task immediately
+If it takes less than 2 minutes — do it NOW. Your future self will thank you.
+
+𝟯. One non-negotiable priority per day
+Not five. Not ten. ONE thing that must get done. Everything else is a bonus.
+
+𝟰. Protect your first hour
+No phone. No email. No one else's agenda. Just yours.
+
+𝟱. Audit your yes's
+Every yes to something is a no to something else. Choose wisely.
+
+Which one are you stealing? 👇 Save this for when you need a reset 📌`,
+    hashtags: "#ProductivityTips #LifeRules #PersonalDevelopment #WorkSmarter #Efficiency #MindfulLiving #DailyHabits #SuccessHabits #TimeManagement #TipTuesday #LifeHacks #SelfDiscipline #HabitBuilding #FocusMode #SmartWork"
+  },
+  {
+    day: 3, dayName: "Wednesday", theme: "The Real Story",
+    category: "personal",
+    time: "2:00 PM", format: "Photo + Caption", goal: "Build Connection",
+    slides: [
+      { bg: "#C4847A", text: "Real talk\ntoday 🤍" }
+    ],
+    caption: `Can I be honest with you for a second? 🤍
+
+Behind every curated post, there's a real person.
+
+Behind this one? There were 31 takes. Cold coffee. A dog that would not stop photobombing. And a lighting setup that collapsed twice.
+
+I share this not to complain — but to remind you:
+
+→ What you see online is the highlight reel.
+→ Everyone is figuring it out as they go.
+→ Messy middles are part of every good story.
+
+If you're in a messy middle right now, I want you to know:
+You're not behind. You're not failing.
+You're just in the part they don't post about.
+
+Keep going. 💛
+
+What's something real you're navigating right now? Safe space here. 👇`,
+    hashtags: "#RealTalk #KeepingItReal #Authentic #SocialMediaVsReality #Honesty #MindfulLiving #CommunitySupport #YouGotThis #RealLife #ItIsOkay #VulnerabilityIsStrength #HumanFirst #WednesdayWisdom #Relatable #BeReal"
+  },
+  {
+    day: 4, dayName: "Thursday", theme: "Before & After Journey",
+    category: "motivational",
+    time: "6:00 PM", format: "Before/After or Carousel", goal: "Inspire & Build Trust",
+    slides: [
+      { bg: "#1A1208", text: "Where I\nstarted →" },
+      { bg: "#C9973A", text: "Where I\nam now ✨" },
+      { bg: "#8FA68E", text: "The gap?\nConsistency." }
+    ],
+    caption: `One year ago vs. today 📊
+
+I'm sharing this because I wish someone had shown me this kind of post when I was starting out.
+
+One year ago:
+❌ Zero confidence
+❌ No clear direction
+❌ Comparing myself to everyone
+❌ Quitting every time it got hard
+
+Today:
+✅ Clear purpose and vision
+✅ Consistent systems (not motivation)
+✅ Celebrating small wins daily
+✅ Showing up even when it's hard
+
+The difference? It wasn't a magic moment.
+It was thousands of small, boring, unglamorous choices.
+
+Progress is rarely visible day to day.
+But zoom out? It's undeniable.
+
+Don't quit on a bad day.
+That's all. 💪
+
+Tag someone who needs to see this. 👇`,
+    hashtags: "#Transformation #ThrowbackThursday #Progress #BeforeAndAfter #GrowthMindset #Consistency #YouCanDoThis #ProgressNotPerfection #PersonalJourney #KeepGoing #NeverGiveUp #Motivated #SuccessMindset #GlowUp #TransformationPost"
+  },
+  {
+    day: 5, dayName: "Friday", theme: "Friday Energy Unlock",
+    category: "entertaining",
+    time: "4:00 PM", format: "Reel or Fun Graphic", goal: "Boost Engagement",
+    slides: [
+      { bg: "#C9973A", text: "🎉\nFriday\nMode:\nON" }
+    ],
+    caption: `Friday energy has entered the chat 🎉
+
+You made it through another week. That's not nothing. That's EVERYTHING.
+
+Your Friday checklist:
+✅ Close the laptop (actually close it)
+✅ Change out of your "home office" outfit
+✅ Do the thing that lights you up
+✅ Rest without guilt
+✅ Touch grass (optional but recommended 🌿)
+
+This weekend I'm doing:
+→ Absolutely nothing productive
+→ Deleting my to-do list (temporarily)
+→ Saying yes only to things that refill me
+
+Productivity culture wants you to hustle 24/7.
+I'm here to tell you: REST IS THE STRATEGY.
+
+Happy Friday, beautiful human. You earned this. 🥂
+
+What's your plan this weekend? Drop it below! 👇`,
+    hashtags: "#HappyFriday #FridayVibes #WeekendVibes #TGIF #FriYay #WeekendMode #FridayFeeling #YouMadeIt #RestIsProductivity #FridayMood #WeekendReady #Celebration #FridayFun #WeekendPlans #SelfCare"
+  },
+  {
+    day: 6, dayName: "Saturday", theme: "Morning Ritual",
+    category: "personal",
+    time: "9:00 AM", format: "Aesthetic Photo", goal: "Lifestyle Inspiration",
+    slides: [
+      { bg: "#E8C4B0", text: "Slow\nmornings\nare the\nbest mornings" }
+    ],
+    caption: `Slow Saturday mornings are sacred to me ☕
+
+My zero-pressure Saturday morning ritual:
+
+7:30 AM — Wake up without an alarm (revolutionary, I know)
+7:45 AM — Coffee. No phone. Just the sound of morning.
+8:15 AM — Journal. Not goals. Not plans. Just thoughts.
+8:45 AM — Gentle movement. Walk, stretch, yoga. Whatever feels right.
+9:30 AM — A real breakfast. Sitting down. Not at my desk.
+
+That's it. No optimization. No productivity hacks.
+Just being a human who happens to be alive on a Saturday morning.
+
+The world will demand your attention soon enough.
+Give yourself this hour first.
+
+What does your ideal Saturday morning look like? ✨`,
+    hashtags: "#SaturdayMorning #SlowLiving #MorningRitual #SelfCare #WeekendVibes #CoffeeMorning #MindfulLiving #Intentional #SaturdayVibes #MorningRoutine #Peaceful #WeekendMood #GratefulMorning #SlowSaturday #NourishYourself"
+  },
+  {
+    day: 7, dayName: "Sunday", theme: "Weekly Reset Guide",
+    category: "educational",
+    time: "7:00 PM", format: "Carousel (5 slides)", goal: "Save-Worthy Content",
+    slides: [
+      { bg: "#3D3530", text: "The Sunday\nReset\nRoutine 🌙" },
+      { bg: "#8FA68E", text: "REFLECT\nWhat worked?\nWhat didn't?" },
+      { bg: "#C9973A", text: "PLAN\nTop 3\npriorities\nnext week" },
+      { bg: "#C4847A", text: "PREPARE\nPrepare what\nyou can tonight" },
+      { bg: "#1A1208", text: "REST\nYou've earned\nit. 💛" }
+    ],
+    caption: `The Sunday Reset — my most saved post 📌
+
+I used to dread Sundays. That anxious, creeping feeling that the week was coming.
+
+Then I built this simple ritual and everything changed.
+
+𝗥𝗘𝗙𝗟𝗘𝗖𝗧 (10 min)
+→ What went well this week?
+→ What would I do differently?
+→ What am I proud of?
+
+𝗣𝗟𝗔𝗡 (15 min)
+→ Set 3 priorities for the week (not 30)
+→ Block time for what matters most
+→ Say no to one unnecessary commitment
+
+𝗣𝗥𝗘𝗣𝗔𝗥𝗘 (20 min)
+→ Prep tomorrow's outfit
+→ Clear your workspace
+→ Write tomorrow's top task
+
+𝗥𝗘𝗦𝗧 (the rest of the evening)
+→ Protect this time fiercely
+→ You can't outwork a depleted soul
+
+Total time: 45 minutes.
+ROI: An entire calm, productive week.
+
+Save this and try it tonight. 🌙
+
+Do you have a Sunday reset ritual? What does yours look like? 👇`,
+    hashtags: "#SundayReset #SundayRoutine #WeeklyPlanning #Productivity #SundayVibes #Intentional #WeeklyReset #PlanningRoutine #SelfCare #SundayPrep #GetOrganized #MindfulSunday #NewWeek #ResetAndRefresh #ProductivityTips"
+  },
+  {
+    day: 8, dayName: "Monday", theme: "Unpopular Opinion",
+    category: "entertaining",
+    time: "8:00 AM", format: "Quote Graphic", goal: "Start Conversations",
+    slides: [
+      { bg: "#C4847A", text: "Unpopular\nOpinion:\n(Swipe if\nyou dare 😏)" },
+      { bg: "#1A1208", text: "Hustle\nculture is\noverrated." }
+    ],
+    caption: `Unpopular opinion incoming 😬
+
+Working 80 hours a week is not a flex.
+It's a warning sign.
+
+The "rise and grind" culture sold us a lie:
+That exhaustion = success.
+That busy = important.
+That rest = laziness.
+
+Here's what I know now:
+→ My best ideas come when I'm NOT working
+→ Burnout erases months of progress overnight
+→ The people I admire most protect their energy fiercely
+
+Doing more is not always the answer.
+Doing the RIGHT things — rested, focused, intentional — is.
+
+Agree? Disagree? I genuinely want to hear your take. 👇
+
+(This is a judgment-free zone. All opinions welcome.)`,
+    hashtags: "#UnpopularOpinion #HustleCulture #WorkLifeBalance #Burnout #AntiHustle #RealTalk #SlowDown #SuccessRedefined #MondayThoughts #MindsetShift #EnergyManagement #RestIsProductive #TruthBomb #WorkSmart #Wellness"
+  },
+  {
+    day: 9, dayName: "Tuesday", theme: "Skill Roadmap",
+    category: "educational",
+    time: "11:00 AM", format: "Carousel (6 slides)", goal: "Save & Share",
+    slides: [
+      { bg: "#8FA68E", text: "Learn ANY\nSkill in\n30 Days 🎯" },
+      { bg: "#C9973A", text: "WEEK 1\nLearn the\nfoundations" },
+      { bg: "#3D3530", text: "WEEK 2\nBuild the\nhabit" },
+      { bg: "#C4847A", text: "WEEK 3\nPractice\non real\nprojects" },
+      { bg: "#1A1208", text: "WEEK 4\nTeach it\nto someone" },
+      { bg: "#8FA68E", text: "What skill\nare you\nlearning? 👇" }
+    ],
+    caption: `How to learn any skill in 30 days 🎯
+
+(The framework I used to learn 6 new skills in 2 years)
+
+𝗪𝗘𝗘𝗞 𝟭 — Foundations
+→ Watch/read 3 high-quality resources
+→ Take notes on core principles only
+→ Practice 15 min every single day
+
+𝗪𝗘𝗘𝗞 𝟮 — Build the habit
+→ Increase to 30 min/day
+→ Join a community of learners
+→ Find one mentor or guide
+
+𝗪𝗘𝗘𝗞 𝟯 — Real projects
+→ Apply the skill to something real
+→ Get feedback (even if it's uncomfortable)
+→ Iterate and improve
+
+𝗪𝗘𝗘𝗞 𝟰 — Teach it
+→ Teaching is the ultimate test of knowledge
+→ Share what you learned publicly
+→ Help one person with the skill
+
+The secret? Don't skip the uncomfortable week 3.
+That's where 90% of people quit.
+That's also where the breakthrough happens.
+
+What skill are you working on this month? 👇`,
+    hashtags: "#SkillBuilding #LearningJourney #30DayChallenge #PersonalDevelopment #Upskill #LearnEveryDay #SelfEducation #Consistency #GrowthMindset #TipTuesday #LifelongLearning #KnowledgeIsPower #SkillDevelopment #PracticeDaily #BecomeYourBestSelf"
+  },
+  {
+    day: 10, dayName: "Wednesday", theme: "Story Time",
+    category: "personal",
+    time: "5:00 PM", format: "Long Caption Photo", goal: "Build Deep Connection",
+    slides: [
+      { bg: "#3D3530", text: "The day\nI almost\nquit\neverything." }
+    ],
+    caption: `Story time. The day I almost quit. 🖤
+
+18 months ago, I sat in my car in a parking lot, crying.
+
+Not because something dramatic happened.
+Because nothing was happening.
+
+I had been showing up consistently for months.
+Creating content. Learning. Trying.
+And it felt like screaming into a void.
+
+Zero traction. Zero momentum.
+I genuinely asked myself: "What's the point?"
+
+I almost deleted everything that day.
+
+Instead, I made one decision:
+I would give it 90 more days. Focused. No comparing. No checking numbers.
+Just creating because I genuinely believed it mattered.
+
+Day 73 of those 90?
+Something shifted.
+
+I'm not sharing this for sympathy.
+I'm sharing it because I know someone reading this is in their parking-lot moment right now.
+
+And I want you to know:
+That's not the end of the story.
+It's just the hardest chapter.
+
+Give it 90 more days.
+I promise you. 🤍
+
+Who needed to hear this today? Share this with them. 👇`,
+    hashtags: "#StoryTime #KeepGoing #DontQuit #Resilience #Vulnerable #RealTalk #BuildingInPublic #Authentic #Perseverance #WednesdayWisdom #YouGotThis #ItGetsBetter #TrustTheProcess #HardChapters #Breakthrough"
+  },
+  {
+    day: 11, dayName: "Thursday", theme: "Common Myths Busted",
+    category: "educational",
+    time: "12:00 PM", format: "Carousel (5 slides)", goal: "Educate & Share",
+    slides: [
+      { bg: "#C9973A", text: "Stop\nbelieving\nthese myths\n🚫 →" },
+      { bg: "#C4847A", text: "MYTH:\n'You need\nto be\nmotivated'" },
+      { bg: "#8FA68E", text: "MYTH:\n'More hours\n= more\nresults'" },
+      { bg: "#1A1208", text: "MYTH:\n'Success\nhappens\novernight'" },
+      { bg: "#3D3530", text: "TRUTH:\nSystems\nbeat\nfeelings." }
+    ],
+    caption: `These myths are keeping you stuck. Let's fix that. 🚫
+
+𝗠𝗬𝗧𝗛 𝟭: "You need to feel motivated to start"
+TRUTH: Action creates motivation, not the other way around. Start anyway. Feeling follows doing.
+
+𝗠𝗬𝗧𝗛 𝟮: "More hours = more results"
+TRUTH: The most effective people I know work fewer hours because they protect their focus ruthlessly.
+
+𝗠𝗬𝗧𝗛 𝟯: "Success happens overnight"
+TRUTH: Every overnight success is built on years of invisible work. You only see the launch, not the runway.
+
+𝗠𝗬𝗧𝗛 𝟰: "You need to have it all figured out first"
+TRUTH: Nobody who ever figured it out had it figured out at the start. Clarity comes from doing.
+
+𝗠𝗬𝗧𝗛 𝟱: "If it's not going viral, it's not working"
+TRUTH: One person whose life you change quietly > 10K passive scrollers.
+
+Which myth have you been holding onto? 👇
+
+Share this with someone who needs to hear it 📢`,
+    hashtags: "#MythBusting #SuccessMyths #RealTalk #TruthBomb #PersonalDevelopment #GrowthMindset #FactsVsMyths #Productivity #ThursdayThoughts #EducationalContent #DebunkingMyths #SelfImprovement #WorkSmart #MindsetShift #RealSuccess"
+  },
+  {
+    day: 12, dayName: "Friday", theme: "This or That Poll",
+    category: "entertaining",
+    time: "3:00 PM", format: "Interactive Carousel", goal: "Maximum Comments",
+    slides: [
+      { bg: "#C9973A", text: "This or\nThat? 🤔\n(Settle this\nnow 😂)" },
+      { bg: "#1A1208", text: "Coffee ☕\nor\nTea 🍵" },
+      { bg: "#8FA68E", text: "Early bird 🌅\nor\nNight owl 🦉" },
+      { bg: "#C4847A", text: "Work from\nhome 🏠\nor\nCafé ☕" },
+      { bg: "#3D3530", text: "Drop ALL\nyour answers\nbelow! 👇" }
+    ],
+    caption: `Friday fun — settle this debate with me 😂
+
+I need answers and I need them NOW:
+
+Round 1: ☕ Coffee vs. 🍵 Tea
+Round 2: 🌅 Early Bird vs. 🦉 Night Owl
+Round 3: 🏠 Work from Home vs. ☕ Work from Café
+Round 4: 📱 Instagram vs. 🎵 TikTok
+Round 5: 📚 Physical Book vs. 📱 Audiobook
+
+Comment like this:
+"☕ / 🌅 / ☕ / 📱 / 📚"
+
+Go go go! I'm judging NOBODY (I'm judging everybody 👀)
+
+Tag the friend you disagree with on all of these 😂`,
+    hashtags: "#ThisOrThat #FridayFun #ThisOrThatChallenge #FridayVibes #InteractivePost #PollTime #FridayDebate #TalkToMe #WeekendVibes #CommunityFun #GetToKnowMe #Relatable #FunFriday #LetsChatInstagram #EngagementPost"
+  },
+  {
+    day: 13, dayName: "Saturday", theme: "What's In My Bag/Desk",
+    category: "personal",
+    time: "11:00 AM", format: "Flatlay Photo", goal: "Personality & Relatability",
+    slides: [
+      { bg: "#E8C4B0", text: "Everything\non my desk\nright now 👇" }
+    ],
+    caption: `Everything on my desk right now (no staging, I promise 😅) ✨
+
+📓 My worn-out journal — on its 4th notebook this year
+☕ Coffee cup #2 of the day (no judgment)
+📱 Phone face-down (trying, really trying)
+🌿 That one plant I've kept alive for 8 months (a personal record)
+🎧 Headphones — lo-fi beats or nothing
+📌 A sticky note that says "done is better than perfect" (still need this reminder daily)
+
+The desk of someone who is figuring it out one day at a time. 🤍
+
+What's on YOUR desk or in your bag right now?
+Show me in the comments! I love these little windows into real life. 👇`,
+    hashtags: "#DeskSetup #WorkspaceGoals #DeskTour #SaturdayVibes #RealLife #WorkFromHome #DeskInspo #StationeryLover #Authentic #Flatlay #LifestylePhotography #SaturdayMorning #GetToKnowMe #BehindTheScenes #WorkSpace"
+  },
+  {
+    day: 14, dayName: "Sunday", theme: "Week Recap & Gratitude",
+    category: "community",
+    time: "6:00 PM", format: "Carousel (5 slides)", goal: "Connection & Warmth",
+    slides: [
+      { bg: "#3D3530", text: "Week 2\nWrap ✨\nThis was\nbeautiful." },
+      { bg: "#C9973A", text: "Biggest\nwin this\nweek 🏆" },
+      { bg: "#8FA68E", text: "What I\nlearned 💡" },
+      { bg: "#C4847A", text: "What I'm\ngrateful\nfor 🤍" },
+      { bg: "#1A1208", text: "What's\ncoming\nnext week\n👀" }
+    ],
+    caption: `Week 2 done. Let me be real with you. 🤍
+
+The wins this week:
+✨ [Your win 1 — personalize this]
+✨ [Your win 2 — personalize this]
+✨ Showed up even when I really, really didn't want to
+
+What I'm learning:
+💡 Slow progress is still progress
+💡 Comparing my chapter 3 to someone's chapter 30 is pointless
+💡 One kind comment can change someone's whole day
+
+What I'm grateful for this week:
+→ This community. Genuinely. YOU.
+→ Every comment, DM, and save — I see it all.
+→ The chance to keep showing up.
+
+Next week I'm focused on [tease something coming].
+
+Drop your biggest win from this week below.
+Big or small, I want to celebrate you. 💛👇`,
+    hashtags: "#WeeklyRecap #SundayReflection #Grateful #WeekInReview #CommunityLove #SundayVibes #Thankful #GratefulHeart #Progress #Wins #CelebrateTogether #Growth #WeeklyWins #Blessed #SundayNight"
+  },
+  {
+    day: 15, dayName: "Monday", theme: "Mid-Point Check-In",
+    category: "motivational",
+    time: "8:00 AM", format: "Quote Graphic", goal: "Re-energize & Inspire",
+    slides: [
+      { bg: "#C9973A", text: "Halfway\nthere.\nDon't\nstop now." },
+      { bg: "#1A1208", text: "The hardest\npart is\nalready\nbehind you." }
+    ],
+    caption: `Day 15. Halfway. Let's talk about it. 🔥
+
+If you started something this month — a goal, a habit, a project — and you're still going:
+
+I see you.
+
+The first two weeks are all adrenaline and excitement.
+Week 3 is where most people quietly quit.
+
+Not because they failed.
+Because they got bored. Or tired. Or life got in the way.
+
+But here's the thing about week 3:
+It's the exact moment where the magic starts compounding.
+
+The habits are forming.
+The momentum is building.
+The results are just around the corner.
+
+Don't quit now.
+You're not behind. You're not doing it wrong.
+You're just in the part nobody talks about.
+
+Keep going.
+Your future self is counting on the version of you that doesn't quit. 💪
+
+What are you committing to finishing this month? 👇`,
+    hashtags: "#MidMonthCheckIn #HalfwayThere #KeepGoing #MondayMotivation #DontQuit #Consistency #MonthlyGoals #GoalGetter #YouGotThis #NeverGiveUp #FinishStrong #MondayMindset #MindsetShift #PersonalGrowth #ShowUp"
+  },
+  {
+    day: 16, dayName: "Tuesday", theme: "Hot Take Tuesday",
+    category: "entertaining",
+    time: "10:00 AM", format: "Graphic or Reel", goal: "Conversation Starter",
+    slides: [
+      { bg: "#C4847A", text: "Hot Take\nTuesday 🌶️\n(Don't\nhate me)" }
+    ],
+    caption: `Hot takes I will not be apologizing for 🌶️
+
+🔥 Aesthetic Instagram pages are less interesting than imperfect authentic ones.
+
+🔥 Most "productivity advice" is just anxiety rebranded as hustle.
+
+🔥 You don't need a morning routine at 5 AM. You need rest.
+
+🔥 Follower count is the most misleading success metric on the internet.
+
+🔥 "Good vibes only" is the most passive-aggressive phrase in wellness culture.
+
+🔥 The best content is created for one specific person, not for an algorithm.
+
+These are my opinions. I own them.
+Agree with all of them? Some? None?
+
+This comment section is officially a safe debate zone.
+Come at me (respectfully) 👇😂
+
+Tag someone who will fight me on at least one of these 😂`,
+    hashtags: "#HotTake #UnpopularOpinion #TakesTwitter #RealTalk #HotTakeTuesday #ControversialOpinion #JustMyOpinion #Debate #TalkToMe #SpeakingMyMind #TuesdayThoughts #ContentCreator #SocialMediaTruths #InternetCulture #HonestThoughts"
+  },
+  {
+    day: 17, dayName: "Wednesday", theme: "What Nobody Tells You",
+    category: "educational",
+    time: "4:00 PM", format: "Carousel (6 slides)", goal: "High Save Rate",
+    slides: [
+      { bg: "#1A1208", text: "What nobody\ntells you\nabout\n[your topic]" },
+      { bg: "#C9973A", text: "It's slower\nthan you\nthink it\nwill be." },
+      { bg: "#8FA68E", text: "The messy\nmiddle is\nmost of\nthe journey." },
+      { bg: "#C4847A", text: "Comparison\nwill be\nyour biggest\nobstacle." },
+      { bg: "#3D3530", text: "Community\nis more\nvaluable\nthan tactics." },
+      { bg: "#C9973A", text: "But it's\nworth it.\nEvery bit. 🤍" }
+    ],
+    caption: `What nobody tells you when you're starting out 🤫
+
+Everyone talks about the wins. The milestones. The "how I made it" posts.
+
+But here's the unfiltered truth I wish someone had told me:
+
+𝟭. It's slower than you think it will be.
+And that's actually okay. Slow growth = deep roots.
+
+𝟮. The messy middle is most of the journey.
+The exciting beginning and triumphant end are small slices. Most of it is just... showing up when it's boring.
+
+𝟯. Comparison will be your biggest obstacle.
+Not competition. Comparison. With people who started before you. Who look like they have it together. Who probably don't.
+
+𝟰. Community will save you when tactics fail.
+The best thing that happened to my journey wasn't a hack. It was finding my people.
+
+𝟱. You'll almost quit at least three times.
+Those moments aren't a sign to stop. They're a rite of passage.
+
+𝟲. But it is completely, utterly worth it.
+Every single step.
+
+What do YOU wish someone had told you earlier? 👇`,
+    hashtags: "#NobodyTellsYou #HonestAdvice #RealTalk #WednesdayWisdom #LifeLessons #StartingOut #BeginnerTips #TheRealTruth #UncensoredAdvice #BuildingInPublic #ContentCreatorLife #TruthBomb #LifeTips #HardTruths #GrowthJourney"
+  },
+  {
+    day: 18, dayName: "Thursday", theme: "Client/Community Love",
+    category: "community",
+    time: "2:00 PM", format: "Quote Graphic or Photo", goal: "Build Social Proof",
+    slides: [
+      { bg: "#8FA68E", text: "Words\nfrom this\ncommunity\n🤍" }
+    ],
+    caption: `This message stopped me in my tracks. 🤍
+
+Someone slid into my DMs this week and said:
+
+"I almost didn't comment on your post last month. I'm so glad I did. This community made me feel like I belonged somewhere for the first time in a long time."
+
+I've read this message probably 20 times.
+
+Because THIS is why I show up.
+Not the numbers. Not the growth.
+THIS.
+
+If you've ever felt unseen, like you're shouting into a void, like you don't belong anywhere on the internet —
+
+You belong here.
+
+This community is for the ones who are still figuring it out.
+The ones who show up anyway.
+The ones who dare to try.
+
+You. Are. Not. Alone. 💛
+
+Drop a 🤍 if this community has meant something to you. I'll reply to every single one.`,
+    hashtags: "#CommunityLove #YouBelongHere #ThankYou #CommunityOverCompetition #Grateful #ConnectionMatters #ThursdayThoughts #YouAreNotAlone #SafeSpace #BuildingCommunity #RealConnection #TogetherWeGrow #SupportSystem #CommunityFirst #Appreciation"
+  },
+  {
+    day: 19, dayName: "Friday", theme: "Weekend Intention Setting",
+    category: "motivational",
+    time: "5:00 PM", format: "Carousel (4 slides)", goal: "Save-Worthy",
+    slides: [
+      { bg: "#C9973A", text: "Set your\nweekend\nintentions\nhere 🌙" },
+      { bg: "#3D3530", text: "RESTORE\nWhat refills\nyour cup?" },
+      { bg: "#8FA68E", text: "CONNECT\nWho lights\nyou up?" },
+      { bg: "#C4847A", text: "ENJOY\nWhat makes\nyou feel\nalive?" }
+    ],
+    caption: `Before you close the laptop — set your weekend intention 🌙
+
+Most of us arrive at Monday more tired than Friday.
+Because we don't rest. We just... stop working.
+
+There's a difference.
+
+Real rest is intentional. It asks:
+
+𝗥𝗘𝗦𝗧𝗢𝗥𝗘:
+What genuinely refills your cup?
+(Not scrolling. Not passively watching. What actually restores you?)
+
+𝗖𝗢𝗡𝗡𝗘𝗖𝗧:
+Who makes you feel like yourself?
+Spend time with that person this weekend.
+
+𝗘𝗡𝗝𝗢𝗬:
+What's one thing you'd do just because it brings you joy?
+Not because it's useful. Just because you love it.
+
+My intention this weekend:
+→ [Personalize this with yours]
+
+What's yours? Write it out in the comments.
+Making it public makes it real. 💛
+
+Save this for every Friday 📌`,
+    hashtags: "#WeekendIntentions #FridayReset #IntentionalLiving #WeekendVibes #SelfCareWeekend #RestAndRestore #FridayNight #SetYourIntentions #MindfulWeekend #WeekendGoals #Intentional #TGIF #FridayFeeling #RestIsProductive #WeekendMindset"
+  },
+  {
+    day: 20, dayName: "Saturday", theme: "Photo Dump",
+    category: "personal",
+    time: "12:00 PM", format: "Photo Dump (6-10 photos)", goal: "Personality & Warmth",
+    slides: [
+      { bg: "#E8C4B0", text: "This week's\nPhoto\nDump 📸" },
+      { bg: "#8FA68E", text: "Real.\nUnfiltered.\nJust life. 🌿" }
+    ],
+    caption: `Weekly photo dump because life is happening and it's pretty good 📸
+
+In no particular order:
+
+📸 The coffee that was too beautiful to drink immediately
+📸 The walk I almost skipped but didn't
+📸 The sunset that made me stop mid-sentence
+📸 The book I've been meaning to finish for a month
+📸 The dinner I actually cooked instead of ordering delivery (rare)
+📸 The view from my favorite spot
+📸 The moment I forgot I had a phone
+
+Life is messy and beautiful and worth paying attention to.
+
+This week made me feel:
+→ Grateful
+→ Tired in a good way
+→ Like I'm exactly where I need to be
+
+What's a photo you took this week that captured the feeling of it? Show me 👇`,
+    hashtags: "#PhotoDump #WeeklyPhotoDump #SaturdayVibes #RealLife #LifeInPhotos #Authentic #WeekendPhotos #GratefulLife #SliceOfLife #MomentsThatMatter #LifeIsGood #PhotoDumpOfTheWeek #SaturdayDiary #InTheMoment #LifeUpdate"
+  },
+  {
+    day: 21, dayName: "Sunday", theme: "Letter to My Past Self",
+    category: "motivational",
+    time: "8:00 PM", format: "Long Caption", goal: "Emotional Connection",
+    slides: [
+      { bg: "#1A1208", text: "A letter\nto my\npast self 🖤" }
+    ],
+    caption: `A letter to the version of me who was about to give up 🖤
+
+Dear past me,
+
+I know you're exhausted.
+I know it feels like it's not working.
+I know you've been showing up in the dark, with no guarantee of light.
+
+I need you to know something:
+
+It works.
+
+Not in the way you're expecting.
+Not on the timeline you planned.
+Not without setbacks that feel like endings.
+
+But it works.
+
+The connections you're about to make will mean everything.
+The skills you're building right now will be the foundation of something beautiful.
+The person you're becoming in this process? She's exactly who the world needs.
+
+Don't speed up.
+Don't compare.
+Don't quit.
+
+Just keep going for 90 more days.
+I promise you won't regret it.
+
+With love,
+The version of you who made it through 🤍
+
+---
+
+What would you say to the version of yourself who was struggling most? Write it in the comments. Sometimes we need to hear it from ourselves. 💛`,
+    hashtags: "#LetterToMyPastSelf #DearPastMe #SundayThoughts #Reflection #PersonalGrowth #KeepGoing #YouMadeIt #SundayInspiration #EmotionalPost #Vulnerability #SelfLove #HealingJourney #LetterToYourself #GrowthStory #Resilience"
+  },
+  {
+    day: 22, dayName: "Monday", theme: "Accountability Monday",
+    category: "community",
+    time: "7:00 AM", format: "Simple Graphic", goal: "High Comment Engagement",
+    slides: [
+      { bg: "#C9973A", text: "Monday\nAccountability\nTime 🎯\nDrop yours 👇" }
+    ],
+    caption: `It's accountability Monday and we're doing this together 🤝
+
+This week, I'm committed to:
+
+🎯 [Your goal 1 — personalize this]
+🎯 [Your goal 2 — personalize this]
+🎯 [Your goal 3 — personalize this]
+
+Studies show you're 42% more likely to achieve a goal when you write it down and share it.
+
+So here's your invitation:
+
+Comment your TOP goal for this week below.
+Make it specific. Make it real.
+
+Next Monday I'll check back in with you.
+We're doing this together. 💪
+
+Drop it below. I'll personally reply to every single goal. 👇`,
+    hashtags: "#AccountabilityMonday #MondayGoals #WeeklyGoals #Accountability #GoalSetting #MondayMotivation #GoalGetter #WeeklyAccountability #CommunityGoals #TogetherWeAchieve #Monday Mindset #WrittenGoals #GoalChallenge #LetsDothisTogether #CommunitySupport"
+  },
+  {
+    day: 23, dayName: "Tuesday", theme: "Tool/Resource Roundup",
+    category: "educational",
+    time: "10:00 AM", format: "Carousel (6 slides)", goal: "Save-Worthy & Share",
+    slides: [
+      { bg: "#3D3530", text: "5 tools I\ncan't live\nwithout 🛠️" },
+      { bg: "#C9973A", text: "Tool 1:\n[Name]\nWhat it does\n& why I love it" },
+      { bg: "#8FA68E", text: "Tool 2:\n[Name]\nFor [purpose]" },
+      { bg: "#C4847A", text: "Tool 3:\n[Name]\nGame changer\nfor [result]" },
+      { bg: "#1A1208", text: "Tools 4 & 5\nin the\ncaption 👇" },
+      { bg: "#C9973A", text: "What's your\nfavorite\ntool? 💬" }
+    ],
+    caption: `5 tools that make my workflow 10x better 🛠️
+
+Sharing everything — because hoarding knowledge is so 2019.
+
+𝟭. [Tool Name]
+What: [Brief description]
+Why: [Specific reason you love it]
+Cost: Free / Paid
+
+𝟮. [Tool Name]
+What: [Brief description]
+Why: [Specific reason you love it]
+Cost: Free / Paid
+
+𝟯. [Tool Name]
+What: [Brief description]
+Why: [Specific reason you love it]
+Cost: Free / Paid
+
+𝟰. [Tool Name]
+What: [Brief description]
+Why: [Specific reason you love it]
+Cost: Free / Paid
+
+𝟱. [Tool Name]
+What: [Brief description]
+Why: [Specific reason you love it]
+Cost: Free / Paid
+
+Total spent on paid tools: [Amount]
+Time saved per week: Genuinely priceless.
+
+What's a tool you swear by that nobody talks about?
+Drop it below — I want to find my new obsession 👇`,
+    hashtags: "#ToolsOfTheTrade #Recommendations #ProductivityTools #AppRecommendations #TipTuesday #ResourceRoundup #BestApps #WorkflowTips #TechTools #Favorites #MustHaveTools #WorkSmart #ProductivityHacks #ToolsILove #ShareTheKnowledge"
+  },
+  {
+    day: 24, dayName: "Wednesday", theme: "AMA — Ask Me Anything",
+    category: "community",
+    time: "3:00 PM", format: "Simple Graphic + Stories", goal: "Deep Engagement",
+    slides: [
+      { bg: "#8FA68E", text: "Ask Me\nAnything 💬\nI'll answer\nthem all." }
+    ],
+    caption: `The floor is officially yours. Ask me anything. 💬
+
+I'm doing a proper AMA today — no topic off limits (within reason 😂).
+
+Ask me about:
+💡 [Your expertise/topic 1]
+🎯 [Your expertise/topic 2]
+✨ [Your expertise/topic 3]
+🌱 My journey and how I got here
+😂 Embarrassing stories (yes, there are many)
+📱 Content creation behind the scenes
+🤔 The question you've always wanted to ask but didn't
+
+Drop every question you have in the comments.
+I'll answer every single one — today, right here, in this thread.
+
+No gatekeeping. No "DM me for the answer."
+Everything out in the open.
+
+Go! 👇`,
+    hashtags: "#AskMeAnything #AMA #QandA #OpenBook #WednesdayAMA #InteractiveContent #NoGatekeeping #CommunityEngagement #AskAway #Transparent #GetToKnowMe #OpenDoor #AllQuestionsWelcome #CommunityChat #HonestAnswers"
+  },
+  {
+    day: 25, dayName: "Thursday", theme: "The Ultimate Guide",
+    category: "educational",
+    time: "1:00 PM", format: "Long Carousel (9 slides)", goal: "Highest Save Rate",
+    slides: [
+      { bg: "#1A1208", text: "The Ultimate\nGuide to\n[Your Topic]\n(Save this)" },
+      { bg: "#C9973A", text: "STEP 1\n[First step\nbriefly]" },
+      { bg: "#8FA68E", text: "STEP 2\n[Second step\nbriefly]" },
+      { bg: "#C4847A", text: "STEP 3\n[Third step\nbriefly]" },
+      { bg: "#3D3530", text: "STEP 4\n[Fourth step\nbriefly]" },
+      { bg: "#C9973A", text: "STEP 5\n[Fifth step\nbriefly]" },
+      { bg: "#1A1208", text: "PRO TIPS\nThe details\nthat matter" },
+      { bg: "#8FA68E", text: "MISTAKES\nto avoid\nat all costs" },
+      { bg: "#C4847A", text: "You now\nknow more\nthan 90%\nof people. 🎯" }
+    ],
+    caption: `Your complete guide to [topic] — I'm not gatekeeping anything 🎯
+
+This took me [time period] to learn. You get it in 5 minutes.
+
+— — —
+
+𝗦𝗧𝗘𝗣 𝟭: [First step]
+[2-3 sentence explanation of what to do and why]
+
+𝗦𝗧𝗘𝗣 𝟮: [Second step]
+[2-3 sentence explanation of what to do and why]
+
+𝗦𝗧𝗘𝗣 𝟯: [Third step]
+[2-3 sentence explanation of what to do and why]
+
+𝗦𝗧𝗘𝗣 𝟰: [Fourth step]
+[2-3 sentence explanation of what to do and why]
+
+𝗦𝗧𝗘𝗣 𝟱: [Fifth step]
+[2-3 sentence explanation of what to do and why]
+
+— — —
+
+🚫 Biggest mistake I see:
+[Common error and how to avoid it]
+
+✅ Pro tip nobody talks about:
+[Your secret insight]
+
+— — —
+
+If this helped you, please SAVE it and SHARE it.
+The algorithm rewards generosity. So does karma. 😊
+
+Questions? Everything in the comments. 👇`,
+    hashtags: "#UltimateGuide #HowTo #Tutorial #FullGuide #StepByStep #LearnFromMe #Educational #HighValueContent #SaveThis #ShareTheKnowledge #CompleteGuide #ThursdayTips #NoGatekeeping #LearningInstagram #TeachingEverything"
+  },
+  {
+    day: 26, dayName: "Friday", theme: "Celebrate the Small Wins",
+    category: "motivational",
+    time: "6:00 PM", format: "Graphic or Reel", goal: "Joyful Engagement",
+    slides: [
+      { bg: "#C9973A", text: "Celebrate\nyour small\nwins today\n🎉" }
+    ],
+    caption: `Nobody talks about small wins enough. Let's fix that right now. 🎉
+
+This week I'm celebrating:
+✅ Showed up when I really, truly did not want to
+✅ Said no to something that would have drained me
+✅ Had one conversation that actually mattered
+✅ Made progress on something I've been avoiding
+✅ Got 7 hours of sleep (for once)
+
+Are any of these "impressive"? By society's standards, probably not.
+
+But these small, consistent choices are the actual architecture of a good life.
+
+The big wins are just stacked small wins wearing a tuxedo.
+
+So today, before you rush to the next thing:
+PAUSE.
+LOOK BACK at this week.
+Find your small wins.
+CELEBRATE them properly.
+
+You did more than you think. 💛
+
+Drop your small win from this week below.
+I will personally celebrate every single one. 🎊👇`,
+    hashtags: "#SmallWins #CelebrateTogether #FridayCelebration #WinOfTheWeek #ProgressMatters #CelebrateProgress #FridayVibes #YouDidThat #SmallWinBigMeaning #WinWednesday #EveryWinCounts #GrowthCelebration #ThisWeekIWon #FridayGratitude #YouMadeIt"
+  },
+  {
+    day: 27, dayName: "Saturday", theme: "Self-Care Non-Negotiables",
+    category: "personal",
+    time: "10:00 AM", format: "Carousel or Photo", goal: "Saves & Relatability",
+    slides: [
+      { bg: "#E8C4B0", text: "My self-care\nnon-negotiables\n(not optional)" },
+      { bg: "#8FA68E", text: "Daily\nmovement.\nEven 10 min." },
+      { bg: "#C4847A", text: "One meal\nwith no\nscreen time." },
+      { bg: "#1A1208", text: "Sleep\nbefore\nmidnight." },
+      { bg: "#C9973A", text: "One thing\nthat's just\nfor me. 🌸" }
+    ],
+    caption: `My self-care non-negotiables — and why I stopped calling them "treats" 🌸
+
+Self-care got a rebrand at some point.
+It became bubble baths and face masks and expensive candles.
+
+And while I love all of those things — that's not what I mean.
+
+My actual non-negotiables:
+
+𝟭. Daily movement — even 10 minutes
+It's not about fitness. It's about not feeling like a statue.
+
+𝟮. One meal with no screens
+I eat like a human being at least once a day. Revolutionary.
+
+𝟯. Sleep before midnight
+When I ignore this, everything falls apart. Without exception.
+
+𝟰. Something that's just for me
+Reading. A walk. Music. Whatever. One thing nobody needs from me.
+
+𝟱. Saying no without explaining myself
+This one took years. Still practicing.
+
+These aren't luxuries. They're the floor.
+Below this, I'm not showing up well for anyone — including myself.
+
+What's on your non-negotiables list?
+I want to steal good ideas. 👇`,
+    hashtags: "#SelfCareNonNegotiable #SelfCare #SelfCareRoutine #SaturdaySelfCare #WellnessTips #MindBodySoul #SelfFirst #HealthyHabits #SelfLovePractice #WellnessJourney #SetYourBoundaries #SelfCareIsPriority #HolisticWellness #SelfCareTips #RestoreYourself"
+  },
+  {
+    day: 28, dayName: "Sunday", theme: "Vision Sunday",
+    category: "motivational",
+    time: "7:00 PM", format: "Journal Flatlay or Quote", goal: "Deep Reflection",
+    slides: [
+      { bg: "#3D3530", text: "Vision\nSunday 🌙\nWho are\nyou becoming?" }
+    ],
+    caption: `Sunday question that might change your week 🌙
+
+Close your eyes for a second.
+
+Imagine yourself exactly one year from now.
+Not the job. Not the followers. Not the income.
+
+The FEELING.
+
+→ How do you feel when you wake up?
+→ What are you working on that excites you?
+→ Who is in your life?
+→ What did you let go of to get here?
+→ What habit do you have that you don't have today?
+
+Now open your eyes.
+
+The version of you in that vision?
+They didn't get there by accident.
+They got there because the version of you TODAY started making choices with that future self in mind.
+
+Every small decision this week is a vote for who you're becoming.
+
+What's ONE vote you're casting tomorrow? 💛
+
+(Write it. Seriously. In the comments or in your journal. Both count.)`,
+    hashtags: "#VisionSunday #SundayReflection #FutureYou #SundayThoughts #Manifesting #IntentionalLiving #SundayVibes #WhoAreYouBecoming #VisualizeSuccess #SundayInspiration #DreamBig #LifeDesign #SundayMindset #CreateYourLife #FutureSelf"
+  },
+  {
+    day: 29, dayName: "Monday", theme: "Community Appreciation",
+    category: "community",
+    time: "9:00 AM", format: "Heartfelt Graphic", goal: "Loyalty & Connection",
+    slides: [
+      { bg: "#C9973A", text: "Thank you\nfor being\nhere. 🤍\nSeriously." }
+    ],
+    caption: `I need to say this and I need you to really hear it 🤍
+
+Thank you.
+
+Not the automated, scheduled, copy-paste kind of thank you.
+
+The real kind.
+
+You chose to spend some of your attention — your most valuable non-renewable resource — here.
+
+You commented. You saved posts. You DM'd me when something resonated. You showed up on days when I wondered if anyone was listening.
+
+I see every single one of you.
+
+The ones who have been here from the start.
+The ones who just found this page this week.
+The ones who lurk and never comment (hi 👋 you're welcome here).
+
+Building something online is vulnerable and weird and wonderful.
+Having people like you along for the ride makes it mean something.
+
+So: thank you. From the realest place I have.
+
+Drop a 💛 if you've been here a while.
+Drop a 👋 if you're newer.
+
+Either way — I'm so glad you're here.`,
+    hashtags: "#ThankYou #Grateful #CommunityLove #Appreciation #ToMyFollowers #CommunityAppreciation #YouMatter #MondayGratitude #ThisCommunity #GratefulHeart #RealGratitude #CommunityFirst #MeaningfulConnections #TogetherWeGrow #YouAreAppreciated"
+  },
+  {
+    day: 30, dayName: "Tuesday", theme: "The Grand Finale",
+    category: "motivational",
+    time: "2:00 PM", format: "Powerful Carousel", goal: "Epic Ending + New Beginning",
+    slides: [
+      { bg: "#1A1208", text: "Day 30.\nWe made it.\nNow what? 🔥" },
+      { bg: "#C9973A", text: "You showed\nup 30 days\nstraight." },
+      { bg: "#8FA68E", text: "That's not\nnothing.\nThat's\neverything." },
+      { bg: "#C4847A", text: "The best\npart starts\nnow. 🚀" },
+      { bg: "#1A1208", text: "Day 31\nbegins\ntomorrow.\nKeep going." }
+    ],
+    caption: `Day 30. We actually did this. 🔥
+
+30 days ago, this was just an idea.
+
+A hope.
+A "what if I just started?"
+
+And now here we are.
+
+What these 30 days taught me:
+
+𝟭. Showing up imperfectly beats not showing up perfectly. Every time.
+
+𝟮. The right people find you when you're consistent.
+
+𝟯. You don't need thousands of followers to make an impact. You need the right ones.
+
+𝟰. Content creation is really just communication. And communication is really just caring enough to try.
+
+𝟱. Community is the whole point. Always was.
+
+To everyone who showed up in the comments, DMed me, saved posts, shared with a friend — you are the reason this mattered.
+
+Day 31 starts tomorrow.
+We're not stopping. We're just getting started.
+
+Tell me: what was your favorite post from these 30 days? 👇
+And what do you want to see next? I'm building the next chapter for YOU.
+
+💛`,
+    hashtags: "#Day30 #30DayChallenge #WeDidIt #ContentChallenge #30DaysOfContent #GrandFinale #KeepGoing #NewBeginnings #ContentCreator #30DayJourney #ThankYou #NextChapter #CommunityWins #ShowedUp #Day31BeginsNow"
+  }
+];
+
+// ─── STATE ────────────────────────────────────────────────────────────────────
+let currentDay = null;
+let copiedDays = new Set();
+let activeFilter = 'all';
+
+// ─── BUILD CALENDAR ───────────────────────────────────────────────────────────
+function buildCalendar(filter = 'all') {
+  const wrap = document.getElementById('calendarWrap');
+  wrap.innerHTML = '';
+
+  const filtered = filter === 'all' ? days : days.filter(d => d.category === filter);
+
+  if (filter !== 'all') {
+    const section = document.createElement('div');
+    section.innerHTML = `
+      <div class="week-header">
+        <span class="week-label">Filtered: ${filter}</span>
+        <div class="week-line"></div>
+      </div>
+      <div class="days-grid">${filtered.map(d => dayCardHTML(d)).join('')}</div>
+    `;
+    wrap.appendChild(section);
+    return;
+  }
+
+  // Group into weeks of 7
+  const weeks = [
+    { label: 'Week One — Build Momentum', days: days.slice(0, 7) },
+    { label: 'Week Two — Deepen the Story', days: days.slice(7, 14) },
+    { label: 'Week Three — Level Up', days: days.slice(14, 21) },
+    { label: 'Week Four — Finish Strong', days: days.slice(21, 30) }
+  ];
+
+  weeks.forEach(week => {
+    const section = document.createElement('div');
+    section.innerHTML = `
+      <div class="week-header">
+        <span class="week-label">${week.label}</span>
+        <div class="week-line"></div>
+      </div>
+      <div class="days-grid">${week.days.map(d => dayCardHTML(d)).join('')}</div>
+    `;
+    wrap.appendChild(section);
+  });
+}
+
+function dayCardHTML(d) {
+  const done = copiedDays.has(d.day) ? '✓ ' : '';
+  const pillClass = `pill-${d.category}`;
+  return `
+    <div class="day-card ${copiedDays.has(d.day) ? 'active' : ''}" onclick="openDay(${d.day})" id="card-${d.day}">
+      <div class="day-num">${done}${d.day}</div>
+      <div class="day-name">${d.dayName}</div>
+      <div class="day-theme">${d.theme}</div>
+      <span class="day-type-pill ${pillClass}">${d.category}</span>
+    </div>`;
+}
+
+// ─── MODAL OPEN / CLOSE ───────────────────────────────────────────────────────
+function openDay(dayNum) {
+  const d = days.find(x => x.day === dayNum);
+  if (!d) return;
+  currentDay = d;
+
+  document.getElementById('mDayBadge').textContent = `Day ${d.day} · ${d.dayName}`;
+  document.getElementById('mTitle').textContent = d.theme;
+  document.getElementById('mTime').textContent = `Post at ${d.time}`;
+  document.getElementById('mFormat').textContent = d.format;
+  document.getElementById('mGoal').textContent = d.goal;
+
+  // Slides
+  const slidesEl = document.getElementById('mSlides');
+  const slidesSection = document.getElementById('slidesSection');
+  if (d.slides && d.slides.length > 1) {
+    slidesSection.style.display = 'block';
+    slidesEl.innerHTML = d.slides.map((s, i) => `
+      <div class="slide-chip" style="background:${s.bg}">
+        <span class="chip-num">${i + 1}</span>
+        ${s.text.replace(/\n/g, '<br>')}
+      </div>`).join('');
+  } else {
+    slidesSection.style.display = 'none';
+  }
+
+  document.getElementById('mCaption').textContent = d.caption;
+  document.getElementById('mHashtags').textContent = d.hashtags;
+
+  document.getElementById('navPrev').disabled = d.day === 1;
+  document.getElementById('navNext').disabled = d.day === 30;
+
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeOverlay() {
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('overlay')) closeOverlay();
+}
+
+function navigateDay(dir) {
+  if (!currentDay) return;
+  const newDay = currentDay.day + dir;
+  if (newDay >= 1 && newDay <= 30) openDay(newDay);
+}
+
+// ─── COPY FUNCTIONS ───────────────────────────────────────────────────────────
+function copyCaption() {
+  const text = document.getElementById('mCaption').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    markCopied('caption');
+    showToast('📋 Caption copied!');
+  });
+}
+
+function copyHashtags() {
+  const text = document.getElementById('mHashtags').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    markCopied('hashtags');
+    showToast('# Hashtags copied!');
+  });
+}
+
+function copyAll() {
+  const caption = document.getElementById('mCaption').textContent;
+  const hashtags = document.getElementById('mHashtags').textContent;
+  const full = caption + '\n\n' + hashtags;
+  navigator.clipboard.writeText(full).then(() => {
+    markCopied('all');
+    showToast('✨ Caption + Hashtags copied!');
+    // Mark day as done
+    if (currentDay) {
+      copiedDays.add(currentDay.day);
+      updateProgress();
+      buildCalendar(activeFilter);
+    }
+  });
+}
+
+function markCopied(type) {
+  const btns = document.querySelectorAll('.copy-btn');
+  const idx = type === 'caption' ? 0 : type === 'hashtags' ? 1 : 2;
+  btns[idx].classList.add('copied');
+  btns[idx].textContent = '✅ Copied!';
+  setTimeout(() => {
+    btns[idx].classList.remove('copied');
+    btns[idx].innerHTML = idx === 0 ? '<span>📋</span> Copy Caption' :
+                           idx === 1 ? '<span>#</span> Copy Hashtags' :
+                                       '<span>✨</span> Copy Both';
+  }, 2000);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function updateProgress() {
+  const pct = (copiedDays.size / 30) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `${copiedDays.size} / 30 days copied`;
+}
+
+// ─── FILTER BAR ───────────────────────────────────────────────────────────────
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    buildCalendar(activeFilter);
+  });
+});
+
+// ─── KEYBOARD NAV ─────────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('overlay').classList.contains('open')) return;
+  if (e.key === 'Escape') closeOverlay();
+  if (e.key === 'ArrowLeft') navigateDay(-1);
+  if (e.key === 'ArrowRight') navigateDay(1);
+});
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+buildCalendar();
+
+// ─── WATERMARK ────────────────────────────────────────────────────────────────
+(function buildWatermark() {
+  const container = document.getElementById('watermarkText');
+  const text = 'The web visibility';
+  const count = 12;
+  let html = '';
+  for (let i = 0; i < count; i++) {
+    html += `<span class="watermark-item">${text}</span>`;
+  }
+  container.innerHTML = html;
+})();
+</script>
+</body>
+</html>
